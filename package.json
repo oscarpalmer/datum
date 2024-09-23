@@ -24,6 +24,24 @@
 				"types": "./types/index.d.cts",
 				"default": "./dist/index.js"
 			}
+		},
+		"./constants": {
+			"types": "./types/constants.d.ts",
+			"bun": "./src/constants.ts",
+			"import": "./dist/constants.mjs",
+			"require": "./dist/constants.js"
+		},
+		"./is": {
+			"types": "./types/is.d.ts",
+			"bun": "./src/is.ts",
+			"import": "./dist/is.mjs",
+			"require": "./dist/is.js"
+		},
+		"./value": {
+			"types": "./types/value.d.ts",
+			"bun": "./src/value.ts",
+			"import": "./dist/value.mjs",
+			"require": "./dist/value.js"
 		}
 	},
 	"files": [
@@ -56,5 +74,5 @@
 	},
 	"type": "module",
 	"types": "types/index.d.cts",
-	"version": "0.1.0"
+	"version": "0.2.0"
 }
