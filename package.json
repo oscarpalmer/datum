@@ -1,0 +1,60 @@
+{
+	"author": {
+		"name": "Oscar Palmér",
+		"url": "https://oscarpalmer.se"
+	},
+	"description": "Dates and stuff.",
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.2",
+		"@happy-dom/global-registrator": "^15.7.4",
+		"@types/bun": "^1.1.10",
+		"bun": "^1.1.29",
+		"dts-bundle-generator": "^9.5.1",
+		"type-fest": "^4.26.1",
+		"typescript": "^5.6.2"
+	},
+	"exports": {
+		".": {
+			"bun": "./src/index.ts",
+			"import": {
+				"types": "./types/index.d.ts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./types/index.d.cts",
+				"default": "./dist/index.js"
+			}
+		}
+	},
+	"files": [
+		"dist",
+		"src",
+		"types"
+	],
+	"keywords": [
+		"date",
+		"time",
+		"utility"
+	],
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"name": "@oscarpalmer/datum",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/oscarpalmer/datum.git"
+	},
+	"scripts": {
+		"build": "bun run clean && bun run compile && bun run types",
+		"clean": "rm -rf ./dist && rm -rf ./types && rm -f ./tsconfig.tsbuildinfo",
+		"compile": "bunx bun ./.bun.ts && bunx bun ./.bun.ts --mjs",
+		"test": "bun test",
+		"types": "bun run types:cjs && bun run types:esm",
+		"types:cjs": "bunx dts-bundle-generator --out-file ./types/index.d.cts --no-check --silent ./src/index.ts",
+		"types:esm": "bunx tsc -p ./tsconfig.json",
+		"watch": "bun build ./src/index.ts --outfile ./dist/index.js --watch"
+	},
+	"type": "module",
+	"types": "types/index.d.cts",
+	"version": "0.1.0"
+}
