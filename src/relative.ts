@@ -10,7 +10,7 @@ function getDayAtMidnight(current?: Date, offset?: number): Date {
 
 function getRelative(offset: number, first: unknown, second: unknown): unknown {
 	const current = first instanceof Date ? first : undefined;
-	const next = getDayAtMidnight(current);
+	const next = getDayAtMidnight(current, offset);
 
 	return first === true || second === true ? next.getTime() : next;
 }
