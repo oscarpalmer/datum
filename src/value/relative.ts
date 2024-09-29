@@ -1,4 +1,4 @@
-import {getOffsetDay} from './internal/day';
+import {getOffsetDay} from '../internal/day';
 
 function getDayAtMidnight(current?: Date, offset?: number): Date {
 	const day = getOffsetDay(offset ?? 0, current);

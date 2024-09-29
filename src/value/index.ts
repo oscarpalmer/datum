@@ -1,4 +1,4 @@
-import {maximumTime, minimumTime} from './constants';
+import {maximumTime, minimumTime} from '../constants';
 
 /**
  * Get the _Date_ from a value
@@ -16,3 +16,5 @@ export function getDate(value: unknown): Date | undefined {
 		return new Date(value);
 	}
 }
+
+export * from './relative';
