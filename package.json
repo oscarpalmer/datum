@@ -25,6 +25,17 @@
 				"default": "./dist/index.js"
 			}
 		},
+		"./add": {
+			"bun": "./src/add.ts",
+			"import": {
+				"types": "./types/add.d.ts",
+				"default": "./dist/add.mjs"
+			},
+			"require": {
+				"types": "./types/add.d.cts",
+				"default": "./dist/add.js"
+			}
+		},
 		"./constants": {
 			"bun": "./src/constants.ts",
 			"import": {
@@ -47,6 +58,28 @@
 				"default": "./dist/is.js"
 			}
 		},
+		"./relative": {
+			"bun": "./src/relative.ts",
+			"import": {
+				"types": "./types/relative.d.ts",
+				"default": "./dist/relative.mjs"
+			},
+			"require": {
+				"types": "./types/relative.d.cts",
+				"default": "./dist/relative.js"
+			}
+		},
+		"./sub": {
+			"bun": "./src/sub.ts",
+			"import": {
+				"types": "./types/sub.d.ts",
+				"default": "./dist/sub.mjs"
+			},
+			"require": {
+				"types": "./types/sub.d.cts",
+				"default": "./dist/sub.js"
+			}
+		},
 		"./value": {
 			"bun": "./src/value.ts",
 			"import": {
@@ -59,16 +92,8 @@
 			}
 		}
 	},
-	"files": [
-		"dist",
-		"src",
-		"types"
-	],
-	"keywords": [
-		"date",
-		"time",
-		"utility"
-	],
+	"files": ["dist", "src", "types"],
+	"keywords": ["date", "time", "utility"],
 	"license": "MIT",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -87,5 +112,5 @@
 	},
 	"type": "module",
 	"types": "types/index.d.cts",
-	"version": "0.3.0"
+	"version": "0.4.0"
 }
