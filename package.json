@@ -4,102 +4,115 @@
 		"url": "https://oscarpalmer.se"
 	},
 	"description": "Dates and stuff.",
+	"dependencies": {
+		"@oscarpalmer/atoms": "^0.77"
+	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.2",
-		"@happy-dom/global-registrator": "^15.7.4",
-		"@types/bun": "^1.1.10",
-		"bun": "^1.1.29",
-		"dts-bundle-generator": "^9.5.1",
-		"type-fest": "^4.26.1",
-		"typescript": "^5.6.2"
+		"@biomejs/biome": "^1.9",
+		"@types/node": "^22.7",
+		"@vitest/coverage-istanbul": "^2.1",
+		"dts-bundle-generator": "^9.5",
+		"glob": "^11",
+		"happy-dom": "^15.7",
+		"typescript": "^5.6",
+		"vite": "^5.4",
+		"vitest": "^2.1"
 	},
 	"exports": {
 		".": {
 			"bun": "./src/index.ts",
 			"import": {
 				"types": "./types/index.d.ts",
-				"default": "./dist/index.mjs"
+				"default": "./dist/index.js"
 			},
 			"require": {
 				"types": "./types/index.d.cts",
-				"default": "./dist/index.js"
+				"default": "./dist/index.cjs"
 			}
 		},
 		"./add": {
 			"bun": "./src/add.ts",
 			"import": {
 				"types": "./types/add.d.ts",
-				"default": "./dist/add.mjs"
+				"default": "./dist/add.js"
 			},
 			"require": {
 				"types": "./types/add.d.cts",
-				"default": "./dist/add.js"
+				"default": "./dist/add.cjs"
 			}
 		},
 		"./constants": {
 			"bun": "./src/constants.ts",
 			"import": {
 				"types": "./types/constants.d.ts",
-				"default": "./dist/constants.mjs"
+				"default": "./dist/constants.js"
 			},
 			"require": {
 				"types": "./types/constants.d.cts",
-				"default": "./dist/constants.js"
+				"default": "./dist/constants.cjs"
 			}
 		},
 		"./is": {
 			"bun": "./src/is.ts",
 			"import": {
 				"types": "./types/is.d.ts",
-				"default": "./dist/is.mjs"
+				"default": "./dist/is.js"
 			},
 			"require": {
 				"types": "./types/is.d.cts",
-				"default": "./dist/is.js"
+				"default": "./dist/is.cjs"
 			}
 		},
 		"./sub": {
 			"bun": "./src/sub.ts",
 			"import": {
 				"types": "./types/sub.d.ts",
-				"default": "./dist/sub.mjs"
+				"default": "./dist/sub.js"
 			},
 			"require": {
 				"types": "./types/sub.d.cts",
-				"default": "./dist/sub.js"
+				"default": "./dist/sub.cjs"
 			}
 		},
 		"./value": {
 			"bun": "./src/value/index.ts",
 			"import": {
 				"types": "./types/value/index.d.ts",
-				"default": "./dist/value/index.mjs"
+				"default": "./dist/value/index.js"
 			},
 			"require": {
 				"types": "./types/value/index.d.cts",
-				"default": "./dist/value/index.js"
+				"default": "./dist/value/index.cjs"
 			}
 		}
 	},
-	"files": ["dist", "src", "types"],
-	"keywords": ["date", "time", "utility"],
+	"files": [
+		"dist",
+		"src",
+		"types"
+	],
+	"keywords": [
+		"date",
+		"time",
+		"utility"
+	],
 	"license": "MIT",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
 	"name": "@oscarpalmer/datum",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/oscarpalmer/datum.git"
 	},
 	"scripts": {
-		"build": "bun run clean && bun run compile",
+		"build": "npm run clean && npm run compile",
+		"compile": "npx vite build && npm run types",
 		"clean": "rm -rf ./dist && rm -rf ./types && rm -f ./tsconfig.tsbuildinfo",
-		"compile": "bunx bun ./.bun.ts && bunx bun ./.bun.ts --esm",
-		"test": "bun test",
-		"types:esm": "bunx tsc -p ./tsconfig.json",
-		"watch": "bun build ./src/index.ts --outfile ./dist/index.js --watch"
+		"test": "npx vitest --coverage",
+		"types": "npx tsc && npx dts-bundle-generator --config ./dts.config.ts --silent",
+		"watch": "npx vite build --watch"
 	},
 	"type": "module",
 	"types": "types/index.d.cts",
-	"version": "0.5.0"
+	"version": "0.6.0"
 }

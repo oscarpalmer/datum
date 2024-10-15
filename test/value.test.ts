@@ -1,6 +1,6 @@
-import {expect, test} from 'bun:test';
+import {expect, test} from 'vitest';
 import {maximumTime, minimumTime} from '../src/constants';
-import {getDate, now, today, tomorrow, yesterday} from '../src/value';
+import {getDate, getRandomDate} from '../src/value';
 
 const values = [
 	0,
@@ -34,50 +34,54 @@ test('getDate', () => {
 	}
 });
 
-test('now', () => {
-	const date = now();
-	const time = now(true);
+test('getRandomDate', () => {
+	const size = 10_000;
 
-	expect(date).toBeInstanceOf(Date);
-	expect(time).toBeNumber();
+	for (let index = 0; index < size; index += 1) {
+		const random = getRandomDate();
 
-	expect(date.getTime() >= time - 4 && date.getTime() <= time + 4).toBeTrue();
-});
+		expect(random.getTime()).toBeGreaterThanOrEqual(minimumTime);
+		expect(random.getTime()).toBeLessThanOrEqual(maximumTime);
+	}
 
-test('today', () => {
-	expect(today()).toBeInstanceOf(Date);
-	expect(today(true)).toBeNumber();
-	expect(today(true)).toBeLessThan(Date.now());
-	expect(today().getTime()).toEqual(today(true));
-});
+	for (let index = 0; index < size; index += 1) {
+		const random = getRandomDate(true);
 
-test('tomorrow & yesterday', () => {
-	const methods = [tomorrow, yesterday];
+		expect(random).toBeGreaterThanOrEqual(minimumTime);
+		expect(random).toBeLessThanOrEqual(maximumTime);
+	}
 
-	for (const method of methods) {
-		const date = method();
-		const time = method(true);
+	const maxDate = new Date('2024-12-31');
+	const minDate = new Date('2020-01-01');
 
-		expect(date).toBeInstanceOf(Date);
-		expect(time).toBeNumber();
+	for (let index = 0; index < size; index += 1) {
+		const random = getRandomDate(minDate, maxDate);
 
-		expect(date.getTime() >= time - 4 && date.getTime() <= time + 4).toBeTrue();
+		expect(random.getTime()).toBeGreaterThanOrEqual(minDate.getTime());
+		expect(random.getTime()).toBeLessThanOrEqual(maxDate.getTime());
+	}
 
-		const then = new Date('2000-01-01');
+	for (let index = 0; index < size; index += 1) {
+		const random = getRandomDate(minDate, maxDate, true);
 
-		const relativeDate = method(then);
-		const relativeTime = method(then, true);
+		expect(random).toBeGreaterThanOrEqual(minDate.getTime());
+		expect(random).toBeLessThanOrEqual(maxDate.getTime());
+	}
 
-		expect(relativeDate).toBeInstanceOf(Date);
-		expect(relativeTime).toBeNumber();
+	const maxTime = maxDate.getTime();
+	const minTime = minDate.getTime();
 
-		expect(
-			relativeDate.getTime() >= relativeTime - 4 &&
-				relativeDate.getTime() <= relativeTime + 4,
-		).toBeTrue();
+	for (let index = 0; index < size; index += 1) {
+		const random = getRandomDate(minTime, maxTime);
 
-		expect(relativeDate).toEqual(
-			method === tomorrow ? new Date('2000-01-02') : new Date('1999-12-31'),
-		);
+		expect(random.getTime()).toBeGreaterThanOrEqual(minTime);
+		expect(random.getTime()).toBeLessThanOrEqual(maxTime);
+	}
+
+	for (let index = 0; index < size; index += 1) {
+		const random = getRandomDate(minTime, maxTime, true);
+
+		expect(random).toBeGreaterThanOrEqual(minTime);
+		expect(random).toBeLessThanOrEqual(maxTime);
 	}
 });

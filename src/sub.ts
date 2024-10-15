@@ -1,4 +1,4 @@
-import {getOffsetDay} from './internal/day';
+import {getOffsetDay} from '~/internal/day';
 
 /**
  * Subtract days from a _Date_

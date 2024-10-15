@@ -1,12 +1,4 @@
-import {getOffsetDay} from '../internal/day';
-
-function getDayAtMidnight(current?: Date, offset?: number): Date {
-	const day = getOffsetDay(offset ?? 0, current);
-
-	day.setHours(0, 0, 0, 0);
-
-	return day;
-}
+import {getDayAtMidnight} from '~/internal/day';
 
 function getRelative(offset: number, first: unknown, second: unknown): unknown {
 	const current = first instanceof Date ? first : undefined;
