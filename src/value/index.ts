@@ -3,6 +3,28 @@ import {maximumTime, minimumTime} from '~/constants';
 import type {DateOrTimestamp} from '~/models';
 
 /**
+ * - Compare two dates or timestamps
+ * - Returns `0`, `1`, or `-1`, useful for array sorting
+ */
+export function compare(
+	first: DateOrTimestamp,
+	second: DateOrTimestamp,
+): number {
+	const firstTime = getTime(first);
+	const secondTime = getTime(second);
+
+	if (Number.isNaN(firstTime) || Number.isNaN(secondTime)) {
+		return Number.isNaN(firstTime) ? (Number.isNaN(secondTime) ? 0 : -1) : 1;
+	}
+
+	if (firstTime === secondTime) {
+		return 0;
+	}
+
+	return firstTime > secondTime ? 1 : -1;
+}
+
+/**
  * Get the _Date_ from a value
  */
 export function getDate(value: unknown): Date | undefined {
@@ -61,6 +83,25 @@ export function getRandomDate(
 	const date = new Date(getRandomInteger(min, max));
 
 	return minimum === true || asTimestamp === true ? date.getTime() : date;
+}
+
+/**
+ * Get the timestamp from a value
+ */
+export function getTime(value: unknown): number {
+	if (value instanceof Date) {
+		return value.getTime();
+	}
+
+	if (
+		typeof value === 'number' &&
+		value >= minimumTime &&
+		value <= maximumTime
+	) {
+		return value;
+	}
+
+	return Number.NaN;
 }
 
 export * from '~/value/absolute';

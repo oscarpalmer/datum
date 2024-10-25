@@ -1,8 +1,8 @@
-import {getDayAtMidnight} from '~/internal/day';
+import {getOffsetDay} from '~/internal/day';
 
 function getRelative(offset: number, first: unknown, second: unknown): unknown {
 	const current = first instanceof Date ? first : undefined;
-	const next = getDayAtMidnight(current, offset);
+	const next = getOffsetDay(offset, current);
 
 	return first === true || second === true ? next.getTime() : next;
 }
@@ -32,9 +32,7 @@ export function today(): Date;
 export function today(asTimestamp: true): number;
 
 export function today(asTimestamp?: unknown): unknown {
-	return asTimestamp === true
-		? getDayAtMidnight().getTime()
-		: getDayAtMidnight();
+	return asTimestamp === true ? getOffsetDay(0).getTime() : getOffsetDay(0);
 }
 
 /**

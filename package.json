@@ -42,7 +42,6 @@
 			}
 		},
 		"./constants": {
-			"bun": "./src/constants.ts",
 			"import": {
 				"types": "./types/constants.d.ts",
 				"default": "./dist/constants.js"
@@ -53,7 +52,6 @@
 			}
 		},
 		"./is": {
-			"bun": "./src/is.ts",
 			"import": {
 				"types": "./types/is.d.ts",
 				"default": "./dist/is.js"
@@ -64,7 +62,6 @@
 			}
 		},
 		"./sub": {
-			"bun": "./src/sub.ts",
 			"import": {
 				"types": "./types/sub.d.ts",
 				"default": "./dist/sub.js"
@@ -75,7 +72,6 @@
 			}
 		},
 		"./value": {
-			"bun": "./src/value/index.ts",
 			"import": {
 				"types": "./types/value/index.d.ts",
 				"default": "./dist/value/index.js"
@@ -114,5 +110,5 @@
 	},
 	"type": "module",
 	"types": "types/index.d.cts",
-	"version": "0.6.0"
+	"version": "0.7.0"
 }
