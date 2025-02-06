@@ -39,7 +39,4 @@ export default defineConfig({
 		environment: 'happy-dom',
 		watch: false,
 	},
-	resolve: {
-		alias: [{find: '~', replacement: resolve(__dirname, 'src')}],
-	},
 });
