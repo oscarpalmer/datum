@@ -1,4 +1,4 @@
-import {getOffsetDay} from '~/internal/day';
+import {getOffsetDay} from '../internal/day';
 
 function getRelative(offset: number, first: unknown, second: unknown): unknown {
 	const current = first instanceof Date ? first : undefined;

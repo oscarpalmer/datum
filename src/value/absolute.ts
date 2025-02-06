@@ -1,5 +1,5 @@
-import type {DateOrTimestamp} from '~/models';
-import {getDate} from '~/value/index';
+import type {DateOrTimestamp} from '../models';
+import {getDate} from './index';
 
 /**
  * Get the day of the week from a date or timestamp _(as an index 0-6; NaN if invalid)_

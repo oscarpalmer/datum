@@ -5,22 +5,21 @@
 	},
 	"description": "Dates and stuff.",
 	"dependencies": {
-		"@oscarpalmer/atoms": "^0.77"
+		"@oscarpalmer/atoms": "^0.82"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9",
-		"@types/node": "^22.7",
-		"@vitest/coverage-istanbul": "^2.1",
+		"@types/node": "^22.13",
+		"@vitest/coverage-istanbul": "^3",
 		"dts-bundle-generator": "^9.5",
 		"glob": "^11",
-		"happy-dom": "^15.7",
-		"typescript": "^5.6",
-		"vite": "^5.4",
-		"vitest": "^2.1"
+		"happy-dom": "^17",
+		"typescript": "^5.7",
+		"vite": "^6",
+		"vitest": "^3"
 	},
 	"exports": {
 		".": {
-			"bun": "./src/index.ts",
 			"import": {
 				"types": "./types/index.d.ts",
 				"default": "./dist/index.js"
@@ -31,7 +30,6 @@
 			}
 		},
 		"./add": {
-			"bun": "./src/add.ts",
 			"import": {
 				"types": "./types/add.d.ts",
 				"default": "./dist/add.js"
@@ -105,10 +103,10 @@
 		"compile": "npx vite build && npm run types",
 		"clean": "rm -rf ./dist && rm -rf ./types && rm -f ./tsconfig.tsbuildinfo",
 		"test": "npx vitest --coverage",
-		"types": "npx tsc && npx dts-bundle-generator --config ./dts.config.ts --silent",
+		"types": "npx tsc && npx dts-bundle-generator --config ./dts.config.cts --silent",
 		"watch": "npx vite build --watch"
 	},
 	"type": "module",
 	"types": "types/index.d.cts",
-	"version": "0.7.0"
+	"version": "0.8.0"
 }

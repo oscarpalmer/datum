@@ -1,6 +1,6 @@
-import {maximumTime, minimumTime} from '~/constants';
-import type {DateOrTimestamp} from '~/models';
-import {getDate} from '~/value/index';
+import {maximumTime, minimumTime} from './constants';
+import type {DateOrTimestamp} from './models';
+import {getDate} from './value/index';
 
 /**
  * Is the value a _Date_?

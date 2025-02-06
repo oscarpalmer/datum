@@ -1,6 +1,6 @@
 import {getRandomInteger} from '@oscarpalmer/atoms/random';
-import {maximumTime, minimumTime} from '~/constants';
-import type {DateOrTimestamp} from '~/models';
+import {maximumTime, minimumTime} from '../constants';
+import type {DateOrTimestamp} from '../models';
 
 /**
  * - Compare two dates or timestamps
@@ -104,6 +104,6 @@ export function getTime(value: unknown): number {
 	return Number.NaN;
 }
 
-export * from '~/value/absolute';
-export * from '~/value/relative';
+export * from './absolute';
+export * from './relative';
 
