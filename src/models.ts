@@ -1,1 +1,1 @@
-export type DateOrTimestamp = Date | number;
+export type DateLike = number | string | Date;

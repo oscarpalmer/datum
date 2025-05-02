@@ -1,9 +1,15 @@
-export function getOffsetDay(offset: number, date?: Date): Date {
-	const next = date == null ? new Date() : new Date(date);
+import type {DateLike} from '../models';
+import {getDate} from '../get';
 
-	next.setUTCHours(0, 0, 0, 0);
+export function getOffsetDay(offset: number, date?: DateLike): Date {
+	const current = getDate(date);
+	const next = current == null ? new Date() : new Date(current);
 
-	next.setDate(next.getDate() + offset);
+	if (typeof offset === 'number') {
+		next.setUTCHours(0, 0, 0, 0);
+
+		next.setDate(next.getDate() + offset);
+	}
 
 	return next;
 }

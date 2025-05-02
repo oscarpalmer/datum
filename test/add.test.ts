@@ -19,4 +19,8 @@ test('addDays', () => {
 	expect(addDays(date, -10).toDateString()).toEqual(
 		new Date('2020-02-10').toDateString(),
 	);
+
+	expect(addDays(date, 'blah' as never).toDateString()).toEqual(
+		date.toDateString(),
+	);
 });

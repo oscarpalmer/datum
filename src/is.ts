@@ -1,6 +1,7 @@
 import {maximumTime, minimumTime} from './constants';
-import type {DateOrTimestamp} from './models';
-import {getDate} from './value/index';
+import {getDate} from './get';
+import type {DateLike} from './models';
+import {parse} from './parse';
 
 /**
  * Is the value a _Date_?
@@ -10,10 +11,10 @@ export function isDate(value: unknown): value is Date {
 }
 
 /**
- * Is the value a _Date_ or timestamp?
+ * Is the value like a date? _(Either a _Date_, timestamp, or parseable date string)_
  */
-export function isDateOrTimestamp(value: unknown): value is DateOrTimestamp {
-	return value instanceof Date || isTimestamp(value);
+export function isDateLike(value: unknown): value is DateLike {
+	return value instanceof Date || isTimestamp(value) || parse(value) != null;
 }
 
 /**

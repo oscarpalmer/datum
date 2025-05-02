@@ -4,8 +4,6 @@ import {fileURLToPath} from 'node:url';
 import {globSync} from 'glob';
 import {defineConfig} from 'vite';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const watch = process.argv.includes('--watch');
 
 const files = globSync(watch ? './src/index.ts' : './src/**/*.ts').map(file => [
@@ -18,7 +16,7 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: [],
-			formats: ['cjs', 'es'],
+			formats: watch ? ['es'] : ['cjs', 'es'],
 		},
 		minify: false,
 		outDir: './dist',
@@ -30,13 +28,15 @@ export default defineConfig({
 				preserveModules: true,
 			},
 		},
+		target: 'esnext',
 	},
+	logLevel: 'silent',
 	test: {
 		coverage: {
 			include: ['src/**/*.ts'],
 			provider: 'istanbul',
 		},
-		environment: 'happy-dom',
+		environment: 'jsdom',
 		watch: false,
 	},
 });

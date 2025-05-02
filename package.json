@@ -5,18 +5,18 @@
 	},
 	"description": "Dates and stuff.",
 	"dependencies": {
-		"@oscarpalmer/atoms": "^0.82"
+		"@oscarpalmer/atoms": "^0.97"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9",
-		"@types/node": "^22.13",
-		"@vitest/coverage-istanbul": "^3",
+		"@types/node": "^22.15",
+		"@vitest/coverage-istanbul": "^3.1",
 		"dts-bundle-generator": "^9.5",
 		"glob": "^11",
-		"happy-dom": "^17",
-		"typescript": "^5.7",
-		"vite": "^6",
-		"vitest": "^3"
+		"jsdom": "^26.1",
+		"typescript": "^5.8",
+		"vite": "^6.3",
+		"vitest": "^3.1"
 	},
 	"exports": {
 		".": {
@@ -39,6 +39,16 @@
 				"default": "./dist/add.cjs"
 			}
 		},
+		"./compare": {
+			"import": {
+				"types": "./types/compare.d.ts",
+				"default": "./dist/compare.js"
+			},
+			"require": {
+				"types": "./types/compare.d.cts",
+				"default": "./dist/compare.cjs"
+			}
+		},
 		"./constants": {
 			"import": {
 				"types": "./types/constants.d.ts",
@@ -47,6 +57,16 @@
 			"require": {
 				"types": "./types/constants.d.cts",
 				"default": "./dist/constants.cjs"
+			}
+		},
+		"./get": {
+			"import": {
+				"types": "./types/get.d.ts",
+				"default": "./dist/get.js"
+			},
+			"require": {
+				"types": "./types/get.d.cts",
+				"default": "./dist/get.cjs"
 			}
 		},
 		"./is": {
@@ -59,24 +79,42 @@
 				"default": "./dist/is.cjs"
 			}
 		},
-		"./sub": {
+		"./models": {
 			"import": {
-				"types": "./types/sub.d.ts",
-				"default": "./dist/sub.js"
+				"types": "./types/models.d.ts"
 			},
 			"require": {
-				"types": "./types/sub.d.cts",
-				"default": "./dist/sub.cjs"
+				"types": "./types/models.d.cts"
 			}
 		},
-		"./value": {
+		"./parse": {
 			"import": {
-				"types": "./types/value/index.d.ts",
-				"default": "./dist/value/index.js"
+				"types": "./types/parse.d.ts",
+				"default": "./dist/parse.js"
 			},
 			"require": {
-				"types": "./types/value/index.d.cts",
-				"default": "./dist/value/index.cjs"
+				"types": "./types/parse.d.cts",
+				"default": "./dist/parse.cjs"
+			}
+		},
+		"./relative": {
+			"import": {
+				"types": "./types/relative.d.ts",
+				"default": "./dist/relative.js"
+			},
+			"require": {
+				"types": "./types/relative.d.cts",
+				"default": "./dist/relative.cjs"
+			}
+		},
+		"./subtract": {
+			"import": {
+				"types": "./types/subtract.d.ts",
+				"default": "./dist/subtract.js"
+			},
+			"require": {
+				"types": "./types/subtract.d.cts",
+				"default": "./dist/subtract.cjs"
 			}
 		}
 	},
@@ -108,5 +146,5 @@
 	},
 	"type": "module",
 	"types": "types/index.d.cts",
-	"version": "0.9.0"
+	"version": "0.10.0"
 }

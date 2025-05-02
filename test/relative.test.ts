@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest';
-import {now, today, tomorrow, yesterday} from '../src/value/relative';
+import {now, today, tomorrow, yesterday} from '../src/relative';
 
 test('now', () => {
 	const date = now();
