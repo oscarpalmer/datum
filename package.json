@@ -5,117 +5,59 @@
 	},
 	"description": "Dates and stuff.",
 	"dependencies": {
-		"@oscarpalmer/atoms": "^0.97"
+		"@oscarpalmer/atoms": "^0.127"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9",
-		"@types/node": "^22.15",
-		"@vitest/coverage-istanbul": "^3.1",
-		"dts-bundle-generator": "^9.5",
-		"glob": "^11",
-		"jsdom": "^26.1",
-		"typescript": "^5.8",
-		"vite": "^6.3",
-		"vitest": "^3.1"
+		"@types/node": "^25",
+		"@vitest/coverage-istanbul": "^4",
+		"jsdom": "^27.4",
+		"oxfmt": "^0.23",
+		"oxlint": "^1.38",
+		"rolldown": "1.0.0-beta.58",
+		"tslib": "^2.8",
+		"typescript": "^5.9",
+		"vite": "8.0.0-beta.5",
+		"vitest": "^4"
 	},
 	"exports": {
 		".": {
-			"import": {
-				"types": "./types/index.d.ts",
-				"default": "./dist/index.js"
-			},
-			"require": {
-				"types": "./types/index.d.cts",
-				"default": "./dist/index.cjs"
-			}
+			"types": "./types/index.d.ts",
+			"default": "./dist/index.js"
 		},
 		"./add": {
-			"import": {
-				"types": "./types/add.d.ts",
-				"default": "./dist/add.js"
-			},
-			"require": {
-				"types": "./types/add.d.cts",
-				"default": "./dist/add.cjs"
-			}
+			"types": "./types/add.d.ts",
+			"default": "./dist/add.js"
 		},
 		"./compare": {
-			"import": {
-				"types": "./types/compare.d.ts",
-				"default": "./dist/compare.js"
-			},
-			"require": {
-				"types": "./types/compare.d.cts",
-				"default": "./dist/compare.cjs"
-			}
+			"types": "./types/compare.d.ts",
+			"default": "./dist/compare.js"
 		},
 		"./constants": {
-			"import": {
-				"types": "./types/constants.d.ts",
-				"default": "./dist/constants.js"
-			},
-			"require": {
-				"types": "./types/constants.d.cts",
-				"default": "./dist/constants.cjs"
-			}
+			"types": "./types/constants.d.ts",
+			"default": "./dist/constants.js"
 		},
 		"./get": {
-			"import": {
-				"types": "./types/get.d.ts",
-				"default": "./dist/get.js"
-			},
-			"require": {
-				"types": "./types/get.d.cts",
-				"default": "./dist/get.cjs"
-			}
+			"types": "./types/get.d.ts",
+			"default": "./dist/get.js"
 		},
 		"./is": {
-			"import": {
-				"types": "./types/is.d.ts",
-				"default": "./dist/is.js"
-			},
-			"require": {
-				"types": "./types/is.d.cts",
-				"default": "./dist/is.cjs"
-			}
+			"types": "./types/is.d.ts",
+			"default": "./dist/is.js"
 		},
 		"./models": {
-			"import": {
-				"types": "./types/models.d.ts"
-			},
-			"require": {
-				"types": "./types/models.d.cts"
-			}
+			"types": "./types/models.d.ts"
 		},
 		"./parse": {
-			"import": {
-				"types": "./types/parse.d.ts",
-				"default": "./dist/parse.js"
-			},
-			"require": {
-				"types": "./types/parse.d.cts",
-				"default": "./dist/parse.cjs"
-			}
+			"types": "./types/parse.d.ts",
+			"default": "./dist/parse.js"
 		},
 		"./relative": {
-			"import": {
-				"types": "./types/relative.d.ts",
-				"default": "./dist/relative.js"
-			},
-			"require": {
-				"types": "./types/relative.d.cts",
-				"default": "./dist/relative.cjs"
-			}
+			"types": "./types/relative.d.ts",
+			"default": "./dist/relative.js"
 		},
 		"./subtract": {
-			"import": {
-				"types": "./types/subtract.d.ts",
-				"default": "./dist/subtract.js"
-			},
-			"require": {
-				"types": "./types/subtract.d.cts",
-				"default": "./dist/subtract.cjs"
-			}
+			"types": "./types/subtract.d.ts",
+			"default": "./dist/subtract.js"
 		}
 	},
 	"files": [
@@ -129,7 +71,6 @@
 		"utility"
 	],
 	"license": "MIT",
-	"main": "dist/index.cjs",
 	"module": "dist/index.js",
 	"name": "@oscarpalmer/datum",
 	"repository": {
@@ -137,14 +78,14 @@
 		"url": "git+https://github.com/oscarpalmer/datum.git"
 	},
 	"scripts": {
-		"build": "npm run clean && npm run compile",
-		"compile": "npx vite build && npm run types",
+		"build": "npm run clean && npx vite build && npm run rolldown:build && npx tsc",
 		"clean": "rm -rf ./dist && rm -rf ./types && rm -f ./tsconfig.tsbuildinfo",
+		"rolldown:build": "npx rolldown -c",
+		"rolldown:watch": "npx rolldown -c ./rolldown.config.js --watch",
 		"test": "npx vitest --coverage",
-		"types": "npx tsc && npx dts-bundle-generator --config ./dts.config.cts --silent",
 		"watch": "npx vite build --watch"
 	},
 	"type": "module",
-	"types": "types/index.d.cts",
-	"version": "0.10.0"
+	"types": "types/index.d.ts",
+	"version": "0.11.0"
 }

@@ -1,46 +1,16 @@
 import {expect, test} from 'vitest';
-import {
-	getDate,
-	getDay,
-	getDaysInMonth,
-	getRandomDate,
-	getTime,
-} from '../src/get';
-import {minimumTime, maximumTime} from '../src/constants';
+import {getDate, getDay, getDaysInMonth, getRandomDate, getTime} from '../src/get';
+import {MAXIMUM_TIME, MINIMUM_TIME} from '../src/constants';
+import {length, values} from './_values';
 
 const days = [
 	...Array.from({length: 12}, (_, index) => new Date(2020, index, 10)),
 	...Array.from({length: 12}, (_, index) => new Date(2021, index, 10)),
 ];
 
-const values = [
-	0,
-	123456789,
-	minimumTime,
-	maximumTime,
-	minimumTime - 1,
-	maximumTime + 1,
-	new Date(),
-	new Date().toJSON(),
-	'2020-01-01',
-	'2020-',
-	'',
-	true,
-	false,
-	[],
-	{},
-	() => {},
-	undefined,
-	null,
-	new Map(),
-	new Set(),
-];
-
-const {length} = values;
-
 test('getDate', () => {
 	for (let index = 0; index < length; index += 1) {
-		if (index < 4 || (index >= 6 && index <= 7)) {
+		if (index < 27) {
 			expect(getDate(values[index])).toBeInstanceOf(Date);
 		} else {
 			expect(getDate(values[index])).toBeUndefined();
@@ -49,9 +19,7 @@ test('getDate', () => {
 });
 
 test('getDay', () => {
-	const expected = [
-		5, 1, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4, 0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5,
-	];
+	const expected = [5, 1, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4, 0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5];
 
 	const {length} = days;
 
@@ -65,8 +33,7 @@ test('getDay', () => {
 
 test('getDaysInMonth', () => {
 	const expected = [
-		31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31, 28, 31, 30, 31, 30, 31,
-		31, 30, 31, 30, 31,
+		31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
 	];
 
 	const {length} = days;
@@ -85,15 +52,15 @@ test('getRandomDate', () => {
 	for (let index = 0; index < size; index += 1) {
 		const random = getRandomDate();
 
-		expect(random.getTime()).toBeGreaterThanOrEqual(minimumTime);
-		expect(random.getTime()).toBeLessThanOrEqual(maximumTime);
+		expect(random.getTime()).toBeGreaterThanOrEqual(MINIMUM_TIME);
+		expect(random.getTime()).toBeLessThanOrEqual(MAXIMUM_TIME);
 	}
 
 	for (let index = 0; index < size; index += 1) {
 		const random = getRandomDate(true);
 
-		expect(random).toBeGreaterThanOrEqual(minimumTime);
-		expect(random).toBeLessThanOrEqual(maximumTime);
+		expect(random).toBeGreaterThanOrEqual(MINIMUM_TIME);
+		expect(random).toBeLessThanOrEqual(MAXIMUM_TIME);
 	}
 
 	const maxDate = new Date('2024-12-31');
@@ -133,7 +100,7 @@ test('getRandomDate', () => {
 
 test('getTime', () => {
 	for (let index = 0; index < length; index += 1) {
-		if (index < 4 || (index >= 6 && index <= 7)) {
+		if (index < 27) {
 			expect(getTime(values[index])).not.toBeNaN();
 		} else {
 			expect(getTime(values[index])).toBeNaN();

@@ -1,7 +1,7 @@
 import {getRandomInteger} from '@oscarpalmer/atoms/random';
-import {maximumTime, minimumTime} from './constants';
+import {MAXIMUM_TIME, MINIMUM_TIME} from './constants';
 import type {DateLike} from './models';
-import {parse} from './parse';
+import {parseDate} from './parse';
 
 /**
  * Get the day of the week from a date or timestamp _(as an index 0-6; NaN if invalid)_
@@ -35,16 +35,12 @@ export function getDate(value: unknown): Date | undefined {
 		return value;
 	}
 
-	if (
-		typeof value === 'number' &&
-		value >= minimumTime &&
-		value <= maximumTime
-	) {
+	if (typeof value === 'number' && value >= MINIMUM_TIME && value <= MAXIMUM_TIME) {
 		return new Date(value);
 	}
 
 	if (typeof value === 'string') {
-		return parse(value);
+		return parseDate(value);
 	}
 }
 
@@ -66,23 +62,16 @@ export function getRandomDate(minimum: DateLike, maximum: DateLike): Date;
 /**
  * Get a random timestamp between two dates or timestamps
  */
-export function getRandomDate(
-	minimum: DateLike,
-	maximum: DateLike,
-	timestamp: true,
-): number;
+export function getRandomDate(minimum: DateLike, maximum: DateLike, timestamp: true): number;
 
 export function getRandomDate(
 	minimum?: DateLike | true,
 	maximum?: DateLike,
 	timestamp?: boolean,
 ): Date | number {
-	const max = getDate(maximum)?.getTime() ?? maximumTime;
+	const max = getDate(maximum)?.getTime() ?? MAXIMUM_TIME;
 
-	const min =
-		minimum === true
-			? minimumTime
-			: (getDate(minimum)?.getTime() ?? minimumTime);
+	const min = minimum === true ? MINIMUM_TIME : (getDate(minimum)?.getTime() ?? MINIMUM_TIME);
 
 	const date = new Date(getRandomInteger(min, max));
 

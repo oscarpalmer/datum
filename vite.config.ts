@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
-import {dirname, extname, relative, resolve} from 'node:path';
+import {extname, relative} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {globSync} from 'glob';
+import {globSync} from 'tinyglobby';
 import {defineConfig} from 'vite';
 
 const watch = process.argv.includes('--watch');
@@ -16,19 +16,19 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: [],
-			formats: watch ? ['es'] : ['cjs', 'es'],
+			formats: ['es'],
 		},
 		minify: false,
 		outDir: './dist',
 		rollupOptions: {
-			external: ['@oscarpalmer/atoms/random'],
+			external: [
+				'@oscarpalmer/atoms/random'
+			],
 			input: Object.fromEntries(files),
 			output: {
-				generatedCode: 'es2015',
 				preserveModules: true,
 			},
 		},
-		target: 'esnext',
 	},
 	logLevel: 'silent',
 	test: {

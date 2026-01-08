@@ -39,15 +39,11 @@ test('tomorrow & yesterday', () => {
 		expect(typeof relativeTime).toBe('number');
 
 		expect(
-			relativeDate.getTime() >= relativeTime - 4 &&
-				relativeDate.getTime() <= relativeTime + 4,
+			relativeDate.getTime() >= relativeTime - 4 && relativeDate.getTime() <= relativeTime + 4,
 		).toBe(true);
 
 		expect(relativeDate.toDateString()).toEqual(
-			(method === tomorrow
-				? new Date('2000-01-02')
-				: new Date('1999-12-31')
-			).toDateString(),
+			(method === tomorrow ? new Date('2000-01-02') : new Date('1999-12-31')).toDateString(),
 		);
 	}
 });

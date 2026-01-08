@@ -1,43 +1,16 @@
 import {expect, test} from 'vitest';
-import {maximumTime, minimumTime} from '../src/constants';
 import {isDate, isDateLike, isLeapYear, isTimestamp} from '../src/is';
-
-const values = [
-	0,
-	123456789,
-	minimumTime,
-	maximumTime,
-	minimumTime - 1,
-	maximumTime + 1,
-	new Date(),
-	new Date().toJSON(),
-	'2020-01-01',
-	'2020-01-',
-	'',
-	true,
-	false,
-	[],
-	{},
-	() => {},
-	undefined,
-	null,
-	new Map(),
-	new Set(),
-];
-
-const {length} = values;
+import {length, values} from './_values';
 
 test('isDate', () => {
 	for (let index = 0; index < length; index += 1) {
-		expect(isDate(values[index])).toBe(index === 6);
+		expect(isDate(values[index])).toBe(index === 25);
 	}
 });
 
 test('isDateLike', () => {
 	for (let index = 0; index < length; index += 1) {
-		expect(isDateLike(values[index])).toBe(
-			index < 4 || (index >= 6 && index <= 7),
-		);
+		expect(isDateLike(values[index])).toBe(index < 27);
 	}
 });
 

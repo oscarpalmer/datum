@@ -1,7 +1,7 @@
-import {maximumTime, minimumTime} from './constants';
+import {MAXIMUM_TIME, MINIMUM_TIME} from './constants';
 import {getDate} from './get';
 import type {DateLike} from './models';
-import {parse} from './parse';
+import {parseDate} from './parse';
 
 /**
  * Is the value a _Date_?
@@ -14,7 +14,7 @@ export function isDate(value: unknown): value is Date {
  * Is the value like a date? _(Either a _Date_, timestamp, or parseable date string)_
  */
 export function isDateLike(value: unknown): value is DateLike {
-	return value instanceof Date || isTimestamp(value) || parse(value) != null;
+	return value instanceof Date || isTimestamp(value) || parseDate(value) != null;
 }
 
 /**
@@ -33,22 +33,14 @@ export function isLeapYear(year: number): boolean;
 export function isLeapYear(value: number, timestamp: true): boolean;
 
 export function isLeapYear(value: unknown, timestamp?: boolean): boolean {
-	const year =
-		value instanceof Date || timestamp === true
-			? getDate(value)?.getFullYear()
-			: value;
+	const year = value instanceof Date || timestamp === true ? getDate(value)?.getFullYear() : value;
 
-	return (
-		typeof year === 'number' &&
-		(year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0))
-	);
+	return typeof year === 'number' && (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0));
 }
 
 /**
  * Is the value a timestamp?
  */
 export function isTimestamp(value: unknown): value is number {
-	return (
-		typeof value === 'number' && value >= minimumTime && value <= maximumTime
-	);
+	return typeof value === 'number' && value >= MINIMUM_TIME && value <= MAXIMUM_TIME;
 }
