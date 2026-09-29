@@ -1,3 +1,5 @@
+import {max} from '@oscarpalmer/atoms/math';
+
 /**
  * Parse value as a date
  */
@@ -23,7 +25,7 @@ export function parseDate(value: unknown): Date | undefined {
 	return new Date(
 		values[0] < MILLENIUM_YEARS ? values[0] + MILLENIUM_START : values[0],
 		values[1] - 1,
-		Math.max(values[2], 1),
+		max([values[2], 1]),
 		values[3],
 		values[4],
 		values[5],

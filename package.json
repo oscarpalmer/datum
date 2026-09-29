@@ -1,91 +1,85 @@
 {
-	"author": {
-		"name": "Oscar Palmér",
-		"url": "https://oscarpalmer.se"
-	},
+	"name": "@oscarpalmer/datum",
+	"version": "0.12.0",
 	"description": "Dates and stuff.",
-	"dependencies": {
-		"@oscarpalmer/atoms": "^0.127"
-	},
-	"devDependencies": {
-		"@types/node": "^25",
-		"@vitest/coverage-istanbul": "^4",
-		"jsdom": "^27.4",
-		"oxfmt": "^0.23",
-		"oxlint": "^1.38",
-		"rolldown": "1.0.0-beta.58",
-		"tslib": "^2.8",
-		"typescript": "^5.9",
-		"vite": "8.0.0-beta.5",
-		"vitest": "^4"
-	},
-	"exports": {
-		".": {
-			"types": "./types/index.d.ts",
-			"default": "./dist/index.js"
-		},
-		"./add": {
-			"types": "./types/add.d.ts",
-			"default": "./dist/add.js"
-		},
-		"./compare": {
-			"types": "./types/compare.d.ts",
-			"default": "./dist/compare.js"
-		},
-		"./constants": {
-			"types": "./types/constants.d.ts",
-			"default": "./dist/constants.js"
-		},
-		"./get": {
-			"types": "./types/get.d.ts",
-			"default": "./dist/get.js"
-		},
-		"./is": {
-			"types": "./types/is.d.ts",
-			"default": "./dist/is.js"
-		},
-		"./models": {
-			"types": "./types/models.d.ts"
-		},
-		"./parse": {
-			"types": "./types/parse.d.ts",
-			"default": "./dist/parse.js"
-		},
-		"./relative": {
-			"types": "./types/relative.d.ts",
-			"default": "./dist/relative.js"
-		},
-		"./subtract": {
-			"types": "./types/subtract.d.ts",
-			"default": "./dist/subtract.js"
-		}
-	},
-	"files": [
-		"dist",
-		"src",
-		"types"
-	],
 	"keywords": [
 		"date",
 		"time",
 		"utility"
 	],
 	"license": "MIT",
-	"module": "dist/index.js",
-	"name": "@oscarpalmer/datum",
+	"author": {
+		"name": "Oscar Palmér",
+		"url": "https://oscarpalmer.se"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/oscarpalmer/datum.git"
 	},
-	"scripts": {
-		"build": "npm run clean && npx vite build && npm run rolldown:build && npx tsc",
-		"clean": "rm -rf ./dist && rm -rf ./types && rm -f ./tsconfig.tsbuildinfo",
-		"rolldown:build": "npx rolldown -c",
-		"rolldown:watch": "npx rolldown -c ./rolldown.config.js --watch",
-		"test": "npx vitest --coverage",
-		"watch": "npx vite build --watch"
-	},
+	"files": [
+		"dist"
+	],
 	"type": "module",
-	"types": "types/index.d.ts",
-	"version": "0.11.0"
+	"types": "dist/index.d.mts",
+	"exports": {
+		"./add": {
+			"types": "./dist/add.d.mts",
+			"default": "./dist/add.mjs"
+		},
+		"./compare": {
+			"types": "./dist/compare.d.mts",
+			"default": "./dist/compare.mjs"
+		},
+		"./constants": {
+			"types": "./dist/constants.d.mts",
+			"default": "./dist/constants.mjs"
+		},
+		"./get": {
+			"types": "./dist/get.d.mts",
+			"default": "./dist/get.mjs"
+		},
+		"./is": {
+			"types": "./dist/is.d.mts",
+			"default": "./dist/is.mjs"
+		},
+		"./models": {
+			"types": "./dist/models.d.mts"
+		},
+		"./parse": {
+			"types": "./dist/parse.d.mts",
+			"default": "./dist/parse.mjs"
+		},
+		"./relative": {
+			"types": "./dist/relative.d.mts",
+			"default": "./dist/relative.mjs"
+		},
+		"./subtract": {
+			"types": "./dist/subtract.d.mts",
+			"default": "./dist/subtract.mjs"
+		}
+	},
+	"scripts": {
+		"build": "npm run tsdown && npx vp pack",
+		"test": "npx vp test run --coverage",
+		"test:leak": "npx vp test run --detect-async-leaks --coverage",
+		"tsdown": "npx tsdown -c ./tsdown.config.ts",
+		"watch": "npx tsdown -c ./tsdown.config.ts --watch"
+	},
+	"dependencies": {
+		"@oscarpalmer/atoms": "^0.205"
+	},
+	"devDependencies": {
+		"@types/node": "^26.6",
+		"@vitest/coverage-istanbul": "5.0.1",
+		"jsdom": "^30.1",
+		"tsdown": "^0.23",
+		"typescript": "^7",
+		"vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
+		"vite-plus": "1.0.0",
+		"vitest": "5.0.1"
+	},
+	"overrides": {
+		"vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
+		"vitest": "5.0.1"
+	}
 }

@@ -1,7 +1,7 @@
-import {expect, test} from 'vitest';
+import {expect, test} from 'vite-plus/test';
 import {getDate, getDay, getDaysInMonth, getRandomDate, getTime} from '../src/get';
 import {MAXIMUM_TIME, MINIMUM_TIME} from '../src/constants';
-import {length, values} from './_values';
+import {length, values} from './fixture';
 
 const days = [
 	...Array.from({length: 12}, (_, index) => new Date(2020, index, 10)),

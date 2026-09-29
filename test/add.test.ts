@@ -1,4 +1,4 @@
-import {expect, test} from 'vitest';
+import {expect, test} from 'vite-plus/test';
 import {addDays} from '../src/add';
 
 test('addDays', () => {

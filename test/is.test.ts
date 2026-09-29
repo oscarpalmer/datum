@@ -1,6 +1,6 @@
-import {expect, test} from 'vitest';
+import {expect, test} from 'vite-plus/test';
 import {isDate, isDateLike, isLeapYear, isTimestamp} from '../src/is';
-import {length, values} from './_values';
+import {length, values} from './fixture';
 
 test('isDate', () => {
 	for (let index = 0; index < length; index += 1) {

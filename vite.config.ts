@@ -1,42 +1,41 @@
-/// <reference types="vitest" />
-import {extname, relative} from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {globSync} from 'tinyglobby';
-import {defineConfig} from 'vite';
-
-const watch = process.argv.includes('--watch');
-
-const files = globSync(watch ? './src/index.ts' : './src/**/*.ts').map(file => [
-	relative('./src', file.slice(0, file.length - extname(file).length)),
-	fileURLToPath(new URL(file, import.meta.url)),
-]);
+/// <reference types="vite-plus/test" />
+import {defineConfig} from 'vite-plus';
+import rules from './node_modules/@oscarpalmer/atoms/plugin/rules.js';
 
 export default defineConfig({
 	base: './',
-	build: {
-		lib: {
-			entry: [],
-			formats: ['es'],
-		},
-		minify: false,
-		outDir: './dist',
-		rollupOptions: {
-			external: [
-				'@oscarpalmer/atoms/random'
-			],
-			input: Object.fromEntries(files),
-			output: {
-				preserveModules: true,
-			},
+	fmt: {
+		arrowParens: 'avoid',
+		bracketSpacing: false,
+		singleQuote: true,
+		useTabs: true,
+	},
+	lint: {
+		jsPlugins: ['./node_modules/@oscarpalmer/atoms/plugin/index.js'],
+		rules: {
+			...rules,
 		},
 	},
 	logLevel: 'silent',
+	pack: {
+		deps: {
+			// tsdown <0.23 compatibility: resolve external dependency subpaths.
+			// Remove to preserve subpath imports as written (the new default).
+			// https://tsdown.dev/options/dependencies#deps-resolvedepsubpath
+			resolveDepSubpath: true,
+		},
+		clean: false,
+		dts: true,
+		entry: ['./src/**/*.ts'],
+		unbundle: true,
+	},
 	test: {
 		coverage: {
-			include: ['src/**/*.ts'],
+			include: ['./src/**/*.ts'],
 			provider: 'istanbul',
 		},
 		environment: 'jsdom',
+		include: ['./test/**/*.test.ts'],
 		watch: false,
 	},
 });

@@ -39,9 +39,7 @@ export function getDate(value: unknown): Date | undefined {
 		return new Date(value);
 	}
 
-	if (typeof value === 'string') {
-		return parseDate(value);
-	}
+	return typeof value === 'string' ? parseDate(value) : undefined;
 }
 
 /**
